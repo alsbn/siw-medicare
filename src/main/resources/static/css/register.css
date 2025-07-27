@@ -1,0 +1,294 @@
+/* register.css - MediCare registration page styling con animazioni eleganti */
+
+body {
+    background: linear-gradient(to right, #e0f7fa, #e0f2f1);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+/* === CERCHI ROTANTI MULTIPLI === */
+.ring {
+  position: relative;
+  width: fit-content;
+  margin: 40px auto;
+}
+
+.ring .ring-1, .ring .ring-2, .ring .ring-3 {
+  position: absolute;
+  border: 2px solid rgba(0,188,212,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  
+}
+
+.ring-1 {
+	width: 80%;
+	height: 80%;
+	top: 10%;
+	left: 10%;
+    border-color: rgba(0,188,212,0.5);
+    animation: led-pulse 2s infinite ease-in-out, fade-slide 1s ease forwards,rotate1 10s linear infinite;
+  
+}
+
+.ring-2 {
+	width: 95%;
+	  height: 95%;
+	  top: 2.5%;
+	  left: 2.5%;
+  border-color: rgba(0,188,212,0.3);
+  animation: led-pulse 2s infinite ease-in-out, fade-slide 1s ease forwards,rotate1 12s linear infinite;
+}
+
+.ring-3 {
+	width: 110%;
+	  height: 110%;
+	  top: -5%;
+	  left: -5%;
+  border-color: rgba(0,188,212,0.2);
+  animation: led-pulse 2s infinite ease-in-out, fade-slide 1s ease forwards,rotate1 15s linear infinite;
+}
+
+@keyframes rotate1 {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes rotate2 {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+@keyframes rotate3 {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+  
+  
+}
+
+/* =========================== */
+/* REGISTER BOX CON LED + ENTRATA */
+/* =========================== */
+
+.register-container {
+    position: relative;
+    max-width: 400px;
+    margin: auto;
+    padding: 40px;
+    margin-top: 40px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    border: 2px solid #00796b;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: led-pulse 2s infinite ease-in-out, fade-slide 1s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* LED pulsante */
+@keyframes led-pulse {
+    0%, 100% {
+        box-shadow: 0 0 20px 0px rgba(0, 121, 107, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 40px 8px rgba(0, 121, 107, 0.6);
+    }
+}
+
+/* Fade in + slide */
+@keyframes fade-slide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* =========================== */
+/* TITOLO                      */
+/* =========================== */
+
+.register-container h2 {
+    margin-bottom: 30px;
+    color: #00796b;
+    font-weight: bold;
+    position: relative;
+}
+
+/* =========================== */
+/* FORM EFFETTI FOCUS         */
+/* =========================== */
+
+.form-control {
+    border-radius: 25px;
+    transition: box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #00bcd4;
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+    outline: none;
+}
+
+/* =========================== */
+/* PULSANTE REGISTRAZIONE     */
+/* =========================== */
+
+.btn-register {
+    background-color: #00796b;
+    color: #fff;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-register:hover {
+    background-color: #00695c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 121, 107, 0.4);
+}
+
+/* =========================== */
+/* FOOTER + ERRORI            */
+/* =========================== */
+
+footer {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: auto;
+}
+
+.error-msg {
+    color: red;	/* login.css - MediCare login page styling con animazioni eleganti */
+
+	body {
+	    background: linear-gradient(to right, #e0f7fa, #e0f2f1);
+	    min-height: 100vh;
+	    display: flex;
+	    flex-direction: column;
+	}
+
+	/* =========================== */
+	/* LOGIN BOX CON LED + ENTRATA */
+	/* =========================== */
+
+	.login-container {
+	    position: relative;
+	    max-width: 400px;
+	    margin: auto;
+	    padding: 40px;
+	    margin-top: 80px;
+	    background-color: #ffffff;
+	    border-radius: 15px;
+	    border: 2px solid #00796b;
+	    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	    animation: led-pulse 2s infinite ease-in-out, fade-slide 1s ease forwards;
+	    opacity: 0;
+	    transform: translateY(30px);
+	}
+
+	/* LED pulsante */
+	@keyframes led-pulse {
+	    0%, 100% {
+	        box-shadow: 0 0 20px 0px rgba(0, 121, 107, 0.4);
+	    }
+	    50% {
+	        box-shadow: 0 0 40px 8px rgba(0, 121, 107, 0.6);
+	    }
+	}
+
+	/* Fade in + slide */
+	@keyframes fade-slide {
+	    to {
+	        opacity: 1;
+	        transform: translateY(0);
+	    }
+	}
+
+	/* =========================== */
+	/* LOGO ANIMATO                */
+	/* =========================== */
+	.logo {
+	    display: block;
+	    margin: 0 auto 20px auto;
+	    height: 60px;
+	    animation: logo-pop 1s ease-out forwards;
+	    transform: scale(0.9);
+	    opacity: 0;
+	}
+
+	@keyframes logo-pop {
+	    to {
+	        transform: scale(1);
+	        opacity: 1;
+	    }
+	}
+
+	/* =========================== */
+	/* TESTO + DECORAZIONE SOTTO  */
+	/* =========================== */
+
+	.login-container h2 {
+	    margin-bottom: 30px;
+	    color: #00796b;
+	    font-weight: bold;
+	    position: relative;
+	}
+
+
+
+	@keyframes underline-expand {
+	    from {
+	        width: 0;
+	        opacity: 0;
+	    }
+	    to {
+	        width: 60px;
+	        opacity: 1;
+	    }
+	}
+
+	/* =========================== */
+	/* FORM EFFETTI FOCUS         */
+	/* =========================== */
+
+	.form-control {
+	    border-radius: 25px;
+	    transition: box-shadow 0.3s ease;
+	}
+
+	.form-control:focus {
+	    border-color: #00bcd4;
+	    box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+	    outline: none;
+	}
+
+	/* =========================== */
+	/* PULSANTE CON ANIMAZIONE    */
+	/* =========================== */
+
+	.btn-login {
+	    background-color: #00796b;
+	    color: #fff;
+	    border-radius: 25px;
+	    transition: all 0.3s ease;
+	}
+
+	.btn-login:hover {
+	    background-color: #00695c;
+	    transform: translateY(-2px);
+	    box-shadow: 0 4px 12px rgba(0, 121, 107, 0.4);
+	}
+
+	/* =========================== */
+	/* FOOTER + ERRORI            */
+	/* =========================== */
+
+	footer {
+	    background-color: #ffffff;
+	    text-align: center;
+	    padding: 15px 0;
+	    margin-top: auto;
+	    }
+
+    font-size: 0.9rem;
+}

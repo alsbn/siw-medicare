@@ -1,0 +1,54 @@
+/* stesso gradiente e palette di index.css */
+body{
+    background:linear-gradient(to right,#e0f7fa,#e0f2f1);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* navbar come homepage */
+.navbar{
+    background:#ffffff;
+    box-shadow:0 4px 6px rgba(0,0,0,0.1);
+}
+.navbar-brand img{height:60px;}
+
+/* pulsanti con angoli arrotondati (stile index.css) */
+.btn-custom{
+    padding:10px 20px;
+    font-size:1rem;
+    border-radius:25px;
+}
+/* ri‑uso delle classi colore della home */
+.btn-login   {background:#00796b;color:#ffffff;}
+.btn-register{background:#004d40;color:#ffffff;}
+.btn-login:hover,
+.btn-register:hover,
+.btn-outline-danger:hover{opacity:0.9;}
+
+/* contenitore principale */
+.list-box{
+    background:#ffffff;
+    border-radius:20px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    padding:40px 30px;
+    margin:80px auto;
+}
+
+/* tabella */
+.table-header{
+    background:#00796b;
+    color:#ffffff;
+}
+.table-hover tbody tr:hover{
+    background:#f1fdfa;
+}
+
+/* footer identico alla home */
+footer{
+    margin-top:auto;
+    background:#ffffff;
+    text-align:center;
+    padding:15px 0;
+    box-shadow:0 -2px 4px rgba(0,0,0,0.05);
+}

@@ -1,0 +1,82 @@
+body {
+    background: linear-gradient(to right, #e0f7fa, #e0f2f1);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.logout-wrapper{
+    position: fixed;
+    top: 8px;          /* distanza dal bordo superiore */
+    right: 16px;       /* distanza dal bordo destro    */
+    z-index: 1031;     /* sopra la navbar (navbar = 1030 di Bootstrap) */
+}
+
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.navbar-brand img {
+    height: 60px;
+}
+
+.hero {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #00796b;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #004d40;
+    margin-bottom: 30px;
+}
+
+.btn-custom {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+}
+
+.btn-login {
+    background-color: #00796b;
+    color: #ffffff;
+}
+
+.btn-register {
+    background-color: #004d40;
+    color: #ffffff;
+}
+
+.btn-login:hover,
+.btn-register:hover {
+    opacity: 0.9;
+}
+
+footer {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 15px 0;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+    margin-top: auto;
+}
+
+/* Dashboard specifico */
+.dashboard-section {
+    padding: 40px 0;
+}
+
+.card .card-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}

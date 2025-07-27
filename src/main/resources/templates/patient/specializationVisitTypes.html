@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>MediCare - Tipi di Visita</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/visits.css}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="/">
+                <img src="/images/MediCare.png" alt="MediCare Logo">
+            </a>
+            <div class="d-flex align-items-center">
+                <div th:if="${userDetails != null}">
+                    <span class="me-3">
+                        <i class="fas fa-user"></i>
+                        <span th:text="${userDetails.username}">Username</span>
+                    </span>
+                    <a href="/logout" class="btn btn-outline-danger btn-custom">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero hero-compact">
+        <div class="container text-center">
+            <h2 th:text="'Tipi di visita per ' + ${specialization.name}">Specializzazione</h2>
+            <p>Seleziona un tipo di visita per procedere con la prenotazione.</p>
+        </div>
+    </section>
+
+    <!-- Visit List -->
+    <section class="visit-section section-compact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <ul class="list-group visit-list">
+                        <li class="list-group-item" th:each="visitType : ${visitTypes}">
+                            <a class="visit-link"
+                               th:href="@{'/patient/bookingOptions/'+ ${specialization.id}+'/'+${visitType.id}}"
+                               th:text="${visitType.name}">Tipo di visita</a>
+                        </li>
+                    </ul>
+                    <div class="text-center mt-4">
+                        <a href="/patient/specialization" class="btn btn-secondary btn-custom">
+                            ← Torna alle Specializzazioni
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 MediCare. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

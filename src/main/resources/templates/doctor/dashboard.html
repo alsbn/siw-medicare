@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>MediCare • Dashboard Dottore</title>
+
+    <!-- Bootstrap & FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    
+    <!-- Mantieni larghezza costante tra pagine con/‑senza scrollbar -->
+    <style>
+        html { scrollbar-gutter: stable; }
+        @supports not (scrollbar-gutter: stable) {
+            html { overflow-y: scroll; }
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100 bg‑medicare">
+
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg">
+	    <div class="container d-flex justify-content-between align-items-center">
+
+	        <!-- Logo -->
+	        <a class="navbar-brand" href="/">
+	            <img src="/images/MediCare.png" alt="MediCare Logo" height="60">
+	        </a>
+
+			<div th:if="${userDetails != null}">
+			    <span class="me-3">
+			        <i class="fas fa-user"></i>&nbsp;<span th:text="${userDetails.username}"></span>
+			    </span>
+			    <a href="/logout" class="btn btn-outline-danger btn-custom">Logout</a>
+			</div>
+
+	    </div>
+	</nav>
+
+<!-- Hero compatto -->
+<section class="hero hero-compact py-4 mb-4">
+  <div class="container text-center">
+    <h2 class="h3 fw-bold text-success">Dashboard del Dottore</h2>
+    <p class="text-success small mb-0">Gestisci profilo, disponibilità e appuntamenti.</p>
+  </div>
+</section>
+
+<!-- Main -->
+<main class="flex-grow-1">
+  <div class="container">
+    <div class="row g-4">
+
+		<!-- Profilo -->
+		<section class="col-lg-4">
+		  <div class="card h-100 border-0 shadow-sm rounded-4">
+		    <div class="card-body p-4 d-flex flex-column">
+
+		      <h2 class="card-title h6 fw-bold text-primary text-center mb-4">
+		        👨‍⚕️ Profilo
+		      </h2>
+
+		      <!-- Nome -->
+		      <p class="mb-1 fs-5 fw-semibold text-center" th:text="|${doctor.name} ${doctor.surname}|">Mario Rossi</p>
+
+		      <!-- Specializzazione come badge -->
+		      <p class="text-center mb-4">
+		        <span class="badge rounded-pill text-bg-secondary px-3 py-2"
+		              th:text="${doctor.specialization != null ? doctor.specialization.name : '—'}">
+		          Cardiologia
+		        </span>
+		      </p>
+
+		      <!-- Altre info -->
+		      <ul class="list-unstyled small text-start mx-auto" style="max-width: 230px;">
+
+		        <li class="mb-2 d-flex align-items-center">
+		          <i class="fas fa-envelope me-2 text-secondary"></i>
+		          <span th:text="${doctor.email}">m.rossi@ospedale.it</span>
+		        </li>
+
+				<!-- Telefono con pulsante modifica/salva -->
+				<li class="mb-2">
+				  <form th:action="@{'/doctor/' + ${doctor.id} + '/updatePhone'}"
+				        method="post"
+				        class="d-flex align-items-center gap-1">
+
+				    <i class="fas fa-phone text-secondary"></i>
+
+				    <!-- input compatto -->
+				    <input type="text"
+				           name="phone"
+				           class="form-control form-control-sm ms-2"
+				           th:value="${doctor.phoneNumber}"
+				           style="max-width: 130px;">
+
+				    <!-- pulsante salvataggio -->
+				    <button type="submit"
+				            class="btn btn-sm btn-outline-primary"
+				            title="Salva numero">
+				      <i class="fas fa-save"></i>
+				    </button>
+				  </form>
+				</li>
+
+		        <li class="d-flex align-items-center">
+		          <i class="fas fa-hospital me-2 text-secondary"></i>
+		          <span th:text="${doctor.healthFacility != null ? doctor.healthFacility.name : '—'}">
+		            Ospedale San Giovanni
+		          </span>
+		        </li>
+
+		      </ul>
+
+		      <a href="/doctor/formNewAvailability" class="btn btn-success w-100 mt-auto">
+		        <i class="fas fa-plus me-1"></i> Nuova disponibilità
+		      </a>
+		    </div>
+		  </div>
+		</section>
+      <!-- Appuntamenti & Disponibilità -->
+      <section class="col-lg-8 d-flex flex-column gap-4">
+
+        <!-- Appuntamenti -->
+        <div class="card border-0 shadow-sm rounded-4">
+          <div class="card-body p-4">
+            <h2 class="h6 fw-bold text-success text-center mb-3">📋 Appuntamenti</h2>
+            <div th:if="${#lists.isEmpty(appointments)}" class="alert alert-info text-center mb-0">
+              Nessun appuntamento prenotato.
+            </div>
+            <div class="table-responsive" th:if="${!#lists.isEmpty(appointments)}">
+              <table class="table table-hover align-middle text-center mb-0">
+                <thead class="table-light">
+                  <tr><th>Data</th><th>Ora</th><th>Visita</th><th>Paziente</th></tr>
+                </thead>
+				<tbody>
+				  <tr th:each="appointment : ${appointments}">
+				    <td th:text="${appointment.date}">2025-06-17</td>
+				    <td th:text="${appointment.time}">14:30</td>
+				    <td th:text="${appointment.visitType.name}">Visita Cardiologica</td>
+				    <td th:text="${appointment.user.name}">Mario</td>
+					<td th:text="${appointment.user.surname}">Bianchi</td>
+				    <td>
+				      <form th:action="@{'/doctor/cancelAppointment/' + ${appointment.id}}"
+				            method="post"
+				            class="m-0"
+				            onsubmit="return confirm('Eliminare questo appuntamento?');">
+				        <button type="submit" class="btn btn-sm btn-outline-danger">
+				          <i class="fas fa-trash"></i>
+				        </button>
+				      </form>
+				    </td>
+				  </tr>
+				</tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disponibilità -->
+        <div class="card border-0 shadow-sm rounded-4 flex-grow-1">
+          <div class="card-body p-4 d-flex flex-column">
+            <h2 class="h6 fw-bold text-primary text-center mb-3">📆 Le mie Disponibilità</h2>
+            <div th:if="${#lists.isEmpty(availabilities)}" class="alert alert-warning text-center mb-0 flex-grow-1">
+              Nessuna disponibilità inserita.
+            </div>
+            <ul class="list-group list-group-flush flex-grow-1 overflow-y-auto" style="max-height: 320px;"
+                th:if="${!#lists.isEmpty(availabilities)}">
+              <li class="list-group-item d-flex justify-content-between align-items-center gap-3"
+                  th:each="availability : ${availabilities}">
+                <div class="small">
+                  <strong th:text="${#temporals.format(availability.date, 'dd MMM yyyy')}">01 Jan 2025</strong><br>
+                  <span class="text-muted" th:text="${availability.time}">
+                    10:00
+                  </span>
+                </div>
+                <form th:action="@{'/doctor/deleteAvailability/' + ${availability.id}}" method="post" class="m-0">
+                  <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+	<div class="my-5"></div>   <!-- spazio visuale sotto i blocchi -->
+
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="py-3 mt-auto bg-white shadow-sm small text-center">
+  <div class="container">© 2025 MediCare. Tutti i diritti riservati.</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

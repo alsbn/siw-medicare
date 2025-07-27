@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>MediCare - Specializzazioni</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/specializations.css}">
+</head>
+<body>
+		
+    <!-- Navbar -->
+	<nav class="navbar navbar-expand-lg">
+	  <div class="container d-flex justify-content-between align-items-center">
+
+	      <!-- logo -->
+	      <a class="navbar-brand" href="/">
+	          <img src="/images/MediCare.png" alt="MediCare Logo">
+	      </a>
+
+	      <!-- area destra: pulsanti + utente -->
+	      <div class="d-flex align-items-center gap-2">
+
+			  <div th:if="${userDetails != null}">
+			  		<span class="me-3">
+			  			<i class="fas fa-user"></i>&nbsp;<span th:text="${userDetails.username}"></span>
+			  		</span>
+					
+					<!-- I miei appuntamenti (solo paziente) -->
+						          <a href="/patient/appointment"
+						              class="btn btn-login btn-custom">
+						               I miei appuntamenti
+						          </a>
+								  
+			  		<a href="/logout" class="btn btn-outline-danger btn-custom">Logout</a>
+			  </div>
+
+	      </div>
+	  </div>
+	</nav>
+	
+
+    <!-- Hero Section -->
+    <section class="hero hero-compact">
+        <div class="container">
+            <h2 th:text="|Benvenuto, ${user.name} ${user.surname}|">Benvenuto, Nome Cognome</h2>
+            <p>Seleziona una specializzazione per prenotare la tua visita.</p>
+        </div>
+    </section>
+
+    <!-- Specialization List -->
+    <section class="specialization-section section-compact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <ul class="list-group specialization-list">
+                        <li class="list-group-item" th:each="specialization : ${specializations}">
+                            <a class="spec-link"
+                               th:href="@{'/patient/specialization/' + ${specialization.id} + '/visitTypes'}"
+                               th:text="${specialization.name}">Nome</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 MediCare. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

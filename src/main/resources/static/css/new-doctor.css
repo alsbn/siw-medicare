@@ -1,0 +1,48 @@
+/* Palette identica a index.css */
+:root{
+    --mc-primary:#00796b;
+    --mc-secondary:#004d40;
+    --mc-bg-start:#e0f7fa;
+    --mc-bg-end:#e0f2f1;
+}
+
+/* Gradiente e layout di base */
+body{
+    background:linear-gradient(to right,var(--mc-bg-start),var(--mc-bg-end));
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* Navbar uguale alla home */
+.navbar{
+    background:#ffffff;
+    box-shadow:0 4px 6px rgba(0,0,0,0.1);
+}
+.navbar-brand img{height:60px;}
+.btn-custom{padding:10px 20px;font-size:1rem;border-radius:25px;}
+
+/* Card centrale */
+.new-doctor-card{
+    background:#ffffff;
+    border-radius:20px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    padding:40px 30px;
+    max-width:700px;
+    margin:80px auto;
+}
+
+/* Pulsanti azione (stesso stile di index) */
+.btn-save  {background:#00796b;color:#fff;border-radius:25px;}
+.btn-cancel{background:#004d40;color:#fff;border-radius:25px;}
+.btn-save:hover,
+.btn-cancel:hover{opacity:0.9;}
+
+/* Footer identico alla home */
+footer{
+    margin-top:auto;
+    background:#ffffff;
+    text-align:center;
+    padding:15px 0;
+    box-shadow:0 -2px 4px rgba(0,0,0,0.05);
+}
