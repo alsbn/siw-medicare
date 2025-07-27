@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>I miei Appuntamenti</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+	   <link rel="stylesheet" th:href="@{/css/appointments.css}">
+</head>
+<body>
+
+    <h1>I miei Appuntamenti</h1>
+    
+
+    <p th:if="${#lists.isEmpty(appointments)}">Nessun appuntamento prenotato.</p>
+
+    <ul th:each="appointment : ${appointments}">
+        <li>
+            Data: <span th:text="${appointment.date}">2025-06-12</span> -
+            Ora: <span th:text="${appointment.time}">10:00</span> -
+			Visita: <span th:text="${appointment.visitType.name}">Tipo di visita</span> –
+            Dottore: <span th:text="|${appointment.doctor.name} ${appointment.doctor.surname}|">Dr. Rossi</span>
+			
+			<form th:action="@{'/patient/cancelAppointment/' + ${appointment.id}}"
+			      method="post" style="display:inline;">
+			    <button type="submit">Annulla</button>
+			</form>
+
+        </li>
+    </ul>
+
+    <a href="/patient/specialization">← Torna alle Specializzazioni</a>
+
+</body>
+</html>

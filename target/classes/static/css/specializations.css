@@ -1,0 +1,116 @@
+body {
+    background: linear-gradient(to right, #e0f7fa, #e0f2f1);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.navbar-brand img {
+    height: 60px;
+}
+
+/* Posiziona il logout sempre in alto a destra */
+.logout-wrapper{
+    position: fixed;
+    top: 8px;          /* distanza dal bordo superiore */
+    right: 16px;       /* distanza dal bordo destro    */
+    z-index: 1031;     /* sopra la navbar (navbar = 1030 di Bootstrap) */
+}
+
+
+/* Hero Section */
+.hero {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero-compact {
+    padding: 20px 10px;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00796b;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #004d40;
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+.btn-custom {
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 25px;
+}
+
+.btn-login {
+    background-color: #00796b;
+    color: #ffffff;
+}
+
+.btn-login:hover {
+    opacity: 0.9;
+}
+
+/* Specialization List */
+.specialization-section {
+    flex: 1;
+    padding: 40px 0;
+}
+
+.section-compact {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.specialization-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.specialization-list li {
+    margin: 15px 0;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 121, 107, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.specialization-list li:hover {
+    transform: translateY(2px);
+    box-shadow: 0 2px 6px rgba(0, 121, 107, 0.3);
+}
+
+.spec-link {
+    display: block;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    color: #00796b;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 15px 0;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+}

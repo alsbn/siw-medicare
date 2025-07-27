@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MediCare – Dashboard Admin</title>
+
+    <!-- librerie -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- stile dedicato alla dashboard -->
+    <link rel="stylesheet" th:href="@{/css/dashboardAdmin.css}">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <!-- Logo -->
+        <a class="navbar-brand" href="/">
+            <img src="/images/MediCare.png" alt="MediCare Logo" height="60">
+        </a>
+		
+		<div th:if="${userDetails != null}">
+		     <span class="me-3">
+		         <i class="fas fa-user"></i>&nbsp;<span th:text="${userDetails.username}"></span>
+		     </span>
+		     <a href="/logout" class="btn btn-outline-danger btn-custom">Logout</a>
+		</div>
+
+    </div>
+</nav>
+
+<!-- Contenuto principale ----------------------------------------------->
+<section class="dashboard-card">
+    <h1>Dashboard Admin</h1>
+    <p class="mb-4">Gestisci i medici in piattaforma.</p>
+
+    <div class="d-grid gap-3">
+        <a th:href="@{/admin/formNewDoctor}" class="btn btn-dashboard btn-new">
+            <i class="fas fa-user-md"></i>&nbsp;Nuovo&nbsp;Dottore
+        </a>
+        <a th:href="@{/admin/doctor}" class="btn btn-dashboard btn-list">
+            <i class="fas fa-list"></i>&nbsp;Elenco&nbsp;Dottori
+        </a>
+    </div>
+</section>
+
+<!-- Footer ------------------------------------------------------------->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 MediCare. Tutti i diritti riservati.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

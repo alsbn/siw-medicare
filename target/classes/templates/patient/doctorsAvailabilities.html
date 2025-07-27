@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Prenota Visita</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/visit-book.css}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="/">
+                <img src="/images/MediCare.png" alt="MediCare Logo">
+            </a>
+            <div class="d-flex align-items-center">
+                <div th:if="${userDetails != null}">
+                    <span class="me-3">
+                        <i class="fas fa-user"></i>
+                        <span th:text="${userDetails.username}">Email</span>
+                    </span>
+                    <a href="/logout" class="btn btn-outline-danger btn-custom">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero hero-compact">
+        <div class="container text-center">
+            <h2 th:text="'Prenotazione per: ' + ${visitType.name}">Tipo di visita</h2>
+            <p>Seleziona un medico e una fascia oraria per prenotare.</p>
+        </div>
+    </section>
+
+    <!-- Slot disponibili -->
+    <section class="book-section section-compact">
+        <div class="container">
+            <div th:if="${#maps.isEmpty(doctorAvailabilityMap)}">
+                <p class="text-center">Nessun medico disponibile per questa visita.</p>
+            </div>
+
+            <div th:if="${!#maps.isEmpty(doctorAvailabilityMap)}">
+                <div th:each="entry : ${doctorAvailabilityMap}" class="mb-4 card shadow-sm p-3 rounded">
+                    <p class="mb-2">
+                        <strong th:text="|${entry.key.name} ${entry.key.surname}|">Nome Dottore</strong> – 
+                        <span th:text="${entry.key.specialization.name}">Specializzazione</span>
+                    </p>
+                    <ul class="list-unstyled">
+                        <li th:each="availability : ${entry.value}" class="mb-2">
+                            <form th:action="@{/patient/newAppointment}" method="post" class="d-inline">
+                                <input type="hidden" name="visitTypeId" th:value="${visitType.id}" />
+                                <input type="hidden" name="doctorId" th:value="${entry.key.id}" />
+                                <input type="hidden" name="availabilityId" th:value="${availability.id}" />
+
+                                <span th:text="${#temporals.format(availability.date, 'dd/MM/yyyy')}">Data</span> –
+                                <span th:text="${availability.time}">Ora</span>
+                                </span>
+
+                                <button type="submit" class="btn btn-login btn-custom ms-2">Prenota</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="/patient/specialization" class="btn btn-secondary btn-custom">
+                    ← Torna alle Specializzazioni
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 MediCare. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

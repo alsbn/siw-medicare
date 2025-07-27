@@ -1,0 +1,106 @@
+/* appointments.css - MediCare con layout più arioso */
+
+body {
+    background: linear-gradient(135deg, #e0f7fa, #f1f8f9);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #004d40;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin-top: 50px;
+    color: #00695c;
+    font-weight: bold;
+    font-size: 2.3rem;
+    text-align: center;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    width: 60px;
+    height: 3px;
+    background-color: #00bcd4;
+    display: block;
+    margin: 12px auto 0 auto;
+    border-radius: 3px;
+}
+
+p {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 40px;
+    width: 90%;
+    max-width: 700px;
+}
+
+li {
+    background-color: #ffffff;
+    border-left: 6px solid #00acc1;
+    border-radius: 12px;
+    padding: 25px 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 18px rgba(0, 188, 212, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Riga informativa (data, ora, visita, dottore) */
+li .info-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    font-size: 1rem;
+}
+
+li span {
+    font-weight: bold;
+    color: #00796b;
+}
+
+/* Pulsante Annulla */
+button {
+    align-self: flex-start;
+    background-color: #e53935;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #c62828;
+    transform: scale(1.05);
+}
+
+a {
+    margin-top: 30px;
+    display: inline-block;
+    color: #00695c;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #004d40;
+    text-decoration: underline;
+}

@@ -1,0 +1,82 @@
+body {
+    background: linear-gradient(to right, #e0f7fa, #e0f2f1);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.navbar-brand img {
+    height: 60px;
+}
+
+/* Hero */
+.hero {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero-compact {
+    padding: 20px 10px;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00796b;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #004d40;
+    margin-bottom: 10px;
+}
+
+/* Form */
+.form-section {
+    flex: 1;
+    padding: 30px 0;
+}
+
+.btn-custom {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+}
+
+.btn-login {
+    background-color: #00796b;
+    color: #ffffff;
+    border: none;
+}
+
+.btn-login:hover {
+    opacity: 0.9;
+}
+
+.btn-secondary {
+    background-color: #004d40;
+    color: #ffffff;
+    border: none;
+}
+
+.btn-secondary:hover {
+    opacity: 0.9;
+}
+
+/* Footer */
+footer {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 15px 0;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+}
